@@ -17,7 +17,7 @@
             
             <ul class="nav-list">
                     
-                <li><a href="{{route("productList")}}">Products</a></li>
+                <li><a href="{{route("list")}}">Products</a></li>
                 <li class="has-dropdown"><a href="">Shop on Variety <i class="fas fa-chevron-down"></i></a>
                     <div class="mega-box">
                         <div class="col-3">
@@ -85,17 +85,17 @@
                     </ul>
                 </li> --}}
                 @if(Auth::check() == false)
-                <li class="has-dropdown"><a href="{{route("user.login")}}">Login <i class="fas fa-chevron-down"></i></a>
+                <li class="has-dropdown"><a href="{{route("login")}}">Login <i class="fas fa-chevron-down"></i></a>
                     <ul class="drop-menu">
-                        <li><a href="{{route("user.register")}}">Sign Up</a></li>
-                        <li><a href="{{route("user.login")}}">My Profile</a></li>
-                        <li><a href="{{route("user.login")}}">Orders</a></li>
-                        <li><a href="{{route("user.login")}}">Wishlist</a></li>
+                        <li><a href="{{route("register")}}">Sign Up</a></li>
+                        <li><a href="{{route("login")}}">My Profile</a></li>
+                        <li><a href="{{route("login")}}">Orders</a></li>
+                        <li><a href="{{route("login")}}">Wishlist</a></li>
                     </ul>
                 </li>
                 <ul class="icons">
                     <li class="cart">
-                        <a href="{{route("user.login")}}">
+                        <a href="{{route("login")}}">
                             <img class="cart" src="./images/shoppingBag.svg" alt="">
                             <span>0</span>
                         </a>
@@ -127,7 +127,7 @@
                             <div class="row">
                                 <div class="row-head">Update</div>
                                 <ul class="mega-links">
-                                    <li><a href="{{route("admin.product.update_products")}}">Update Existing Products</a></li>
+                                    <li><a href="{{route("admin.product.update_product")}}">Update Existing Products</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -144,7 +144,7 @@
                 
                 
                 
-                <li class="has-dropdown">Hello!  {{Auth::user()->name}} <i class="fas fa-chevron-down"></i>
+                <li class="has-dropdown"> <a href="#">Hello!  {{Auth::user()->full_name}} <i class="fas fa-chevron-down"></i></a>
                     <ul class="drop-menu">
                         <li><a href="#">My Profile</a></li>
                         <li><a href="#">Orders</a></li>
@@ -156,12 +156,12 @@
                     <li class="cart">
                         <a href="{{route("user.product.cart")}}">
                             <img class="cart" src="./images/shoppingBag.svg" alt="">
-                            <span>0</span>
+                            <span>{{\Gloudemans\Shoppingcart\Facades\Cart::content()->count()}}</span>
                         </a>
                     </li>
                 </ul>
                 @else
-                <li class="has-dropdown">Hello!  {{Auth::user()->name}} <i class="fas fa-chevron-down"></i>
+                <li class="has-dropdown"> <a href="">Hello! {{Auth::user()->full_name}} <i class="fas fa-chevron-down"></i></a>
                     <ul class="drop-menu">
                         <li><a href="#">My Profile</a></li>
                         <li><a href="#">Orders</a></li>

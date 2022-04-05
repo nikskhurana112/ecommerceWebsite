@@ -22,7 +22,7 @@
                 </div>
             </div>
             <div class="swiper-slide">
-                <img src="./images/hero-2.png" alt="">
+                <img src="images/hero-2.png" alt="">
                 <div class="content">
                     <h1>Your first Order
                     <br>
@@ -58,69 +58,30 @@
     </div>
 </div>
 </section>
-
+{{-- Collection Products --}}
 <section class="section promotion">
 <div class="container">
     <div class="title">
         <h2>Shop Collection</h2>
         <span>Select from the premium product and save plenty of money</span>
     </div>
+    @foreach($products as $product)
+    @if($product->price < 10)
     <div class="promotion-layout container">
         <div class="col-4">
         <div class="promotion-item">
-            <img src="./images/promo1.jpg" alt="">
+            @if($product->imagePath != null)
+                <img src="{{getImageUrl($product->imagePath)}}" alt="">
+            @endif
             <div class="promotion-content">
-                <h3>JUICE</h3>
-                <a href="">SHOP NOW</a>
+                <h3>$product->name</h3>
+                <a href="{{route("productInfo", ['id' => $product->id])}}">SHOP NOW</a>
             </div>
         </div>
-        </div>
-        <div class="col-4">
-            <div class="promotion-item">
-                <img src="./images/promo2.jpg" alt="">
-                <div class="promotion-content">
-                    <h3>MANGO</h3>
-                    <a href="">SHOP NOW</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-4">
-        <div class="promotion-item">
-            <img src="./images/promo3.jpg" alt="">
-            <div class="promotion-content">
-                <h3>GRAPES</h3>
-                <a href="">SHOP NOW</a>
-            </div>
-        </div>
-        </div>
-        <div class="col-4">
-        <div class="promotion-item">
-            <img src="./images/promo4.jpg" alt="">
-            <div class="promotion-content">
-                <h3>PLUM</h3>
-                <a href="">SHOP NOW</a>
-            </div>
-        </div>
-        </div>
-        <div class="col-4">
-        <div class="promotion-item">
-            <img src="./images/promo5.jpg" alt="">
-            <div class="promotion-content">
-                <h3>ORANGE</h3>
-                <a href="">SHOP NOW</a>
-            </div>
-        </div>
-        </div>
-        <div class="col-4">
-            <div class="promotion-item">
-                <img src="./images/promo6.jpg" alt="">
-                <div class="promotion-content">
-                    <h3>PINEAPPLE</h3>
-                    <a href="">SHOP NOW</a>
-                </div>
-            </div>
         </div>
     </div>
+    @endif    
+    @endforeach
 </div>
 </section>
 <!--Featured Products-->
@@ -134,16 +95,21 @@
         <div class="swiper-container slider-2">
             <div class="swiper-wrapper">
                 <div class="swiper-slide">
+                    @foreach($products as $product)
+                        
+                    @if($product->price >= 10 && $product->price < 20)    
                     <div class="product">
                         <div class="img-container">
-                            <img src="./images/product-1.jpg" alt="">
+                            @if($product->imagePath != null)
+                                <img src="{{getImageUrl($product->imagePath)}}" alt="">
+                             @endif
                             <div class="addCart">
-                                <i class="fas fa-shopping-cart"></i>
+                                <a href="{{route("user.cart.store", ['id' => $product->id])}}" method="post"><i class="fas fa-shopping-cart"></i></a> 
                             </div>
                             <ul class="side-icons">
-                                <span>
-                                    <i class="fas fa-search"></i>
-                                </span>
+                                {{-- <span>
+                                    <a href="{{route("", ['id' => $product->id, 'quantity' => "1"])}}"><i class="fas fa-search"></i></a> 
+                                </span> --}}
                                 <span>
                                     <i class="far fa-heart"></i>
                                 </span>
@@ -153,167 +119,16 @@
                             </ul>
                         </div>
                         <div class="bottom">
-                            <a href="productDetails.html">Bambi Print Mini Backpack</a>
+                            <a href="productDetails.html">$product->name</a>
                             <div class="price">
-                                <span>$150</span>
+                                <span>$product->price</span>
                             </div>
                         </div>
                     </div>
+                    @endif
+                    @endforeach
                 </div>
-                <div class="swiper-slide">
-                    <div class="product">
-                        <div class="img-container">
-                            <img src="./images/product-8.jpg" alt="">
-                            <div class="addCart">
-                                <i class="fas fa-shopping-cart"></i>
-                            </div>
-    
-                            <ul class="side-icons">
-                                <span><i class="fas fa-search"></i></span>
-                                <span><i class="far fa-heart"></i></span>
-                                <span><i class="fas fa-sliders-h"></i></span>
-                            </ul>
-                        </div>
-                        <div class="bottom">
-                            <a href="">Bambi Print Mini Backpack</a>
-                            <div class="price">
-                                <span>$150</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="product">
-                        <div class="img-container">
-                            <img src="./images/product-10.jpg" alt="">
-                            <div class="addCart">
-                                <i class="fas fa-shopping-cart"></i>
-                            </div>
-    
-                            <ul class="side-icons">
-                                <span><i class="fas fa-search"></i></span>
-                                <span><i class="far fa-heart"></i></span>
-                                <span><i class="fas fa-sliders-h"></i></span>
-                            </ul>
-                        </div>
-                        <div class="bottom">
-                            <a href="">Bambi Print Mini Backpack</a>
-                            <div class="price">
-                                <span>$150</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="product">
-                        <div class="img-container">
-                            <img src="./images/product-7.jpg" alt="">
-                            <div class="addCart">
-                                <i class="fas fa-shopping-cart"></i>
-                            </div>
-    
-                            <ul class="side-icons">
-                                <span><i class="fas fa-search"></i></span>
-                                <span><i class="far fa-heart"></i></span>
-                                <span><i class="fas fa-sliders-h"></i></span>
-                            </ul>
-                        </div>
-                        <div class="bottom">
-                            <a href="">Bambi Print Mini Backpack</a>
-                            <div class="price">
-                                <span>$150</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="product">
-                        <div class="img-container">
-                            <img src="./images/product-6.jpg" alt="">
-                            <div class="addCart">
-                                <i class="fas fa-shopping-cart"></i>
-                            </div>
-    
-                            <ul class="side-icons">
-                                <span><i class="fas fa-search"></i></span>
-                                <span><i class="far fa-heart"></i></span>
-                                <span><i class="fas fa-sliders-h"></i></span>
-                            </ul>
-                        </div>
-                        <div class="bottom">
-                            <a href="">Bambi Print Mini Backpack</a>
-                            <div class="price">
-                                <span>$150</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="product">
-                        <div class="img-container">
-                            <img src="./images/product-5.jpg" alt="">
-                            <div class="addCart">
-                                <i class="fas fa-shopping-cart"></i>
-                            </div>
-    
-                            <ul class="side-icons">
-                                <span><i class="fas fa-search"></i></span>
-                                <span><i class="far fa-heart"></i></span>
-                                <span><i class="fas fa-sliders-h"></i></span>
-                            </ul>
-                        </div>
-                        <div class="bottom">
-                            <a href="">Bambi Print Mini Backpack</a>
-                            <div class="price">
-                                <span>$150</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="product">
-                        <div class="img-container">
-                            <img src="./images/product-1.jpg" alt="">
-                            <div class="addCart">
-                                <i class="fas fa-shopping-cart"></i>
-                            </div>
-    
-                            <ul class="side-icons">
-                                <span><i class="fas fa-search"></i></span>
-                                <span><i class="far fa-heart"></i></span>
-                                <span><i class="fas fa-sliders-h"></i></span>
-                            </ul>
-                        </div>
-                        <div class="bottom">
-                            <a href="">Bambi Print Mini Backpack</a>
-                            <div class="price">
-                                <span>$150</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="product">
-                        <div class="img-container">
-                            <img src="./images/product-10.jpg" alt="">
-                            <div class="addCart">
-                                <i class="fas fa-shopping-cart"></i>
-                            </div>
-    
-                            <ul class="side-icons">
-                                <span><i class="fas fa-search"></i></span>
-                                <span><i class="far fa-heart"></i></span>
-                                <span><i class="fas fa-sliders-h"></i></span>
-                            </ul>
-                        </div>
-                        <div class="bottom">
-                            <a href="">Bambi Print Mini Backpack</a>
-                            <div class="price">
-                                <span>$150</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
             </div>
         </div>
     </div>
@@ -334,170 +149,32 @@
     <span>Select from the premium product brands and save money</span>
 </div>
 <div class="product-layout">
+    @foreach($products as $product)   
     <div class="product">
         <div class="img-container">
-            <img src="./images/product-9.jpg" alt="">
+            @if($product->imagePath != null)
+                <img src="{{getImageUrl($product->imagePath)}}" alt="">
+            @endif
             <div class="addCart">
-                <i class="fas fa-shopping-cart"></i>
+                <a href="{{route("user.cart.store", ['id' => $product->id])}}" method="post"><i class="fas fa-shopping-cart"></i></a> 
             </div>
-
+            
             <ul class="side-icons">
-                <span><i class="fas fa-search"></i></span>
+                {{-- <span>
+                    <a href="{{route("productInfo", ['id' => $product->id])}}" ><i class="fas fa-search"></i></a> 
+                </span> --}}
                 <span><i class="far fa-heart"></i></span>
                 <span><i class="fas fa-sliders-h"></i></span>
             </ul>
         </div>
         <div class="bottom">
-            <a href="">Bambi Print Mini Backpack</a>
+            <a href="">$product->name</a>
             <div class="price">
-                <span>$150</span>
+                <span>$product->price</span>
             </div>
         </div>
     </div>
-    <div class="product">
-        <div class="img-container">
-            <img src="./images/product-1.jpg" alt="">
-            <div class="addCart">
-                <i class="fas fa-shopping-cart"></i>
-            </div>
-
-            <ul class="side-icons">
-                <span><i class="fas fa-search"></i></span>
-                <span><i class="far fa-heart"></i></span>
-                <span><i class="fas fa-sliders-h"></i></span>
-            </ul>
-        </div>
-        <div class="bottom">
-            <a href="">Bambi Print Mini Backpack</a>
-            <div class="price">
-                <span>$150</span>
-                <span class="cancel">$160</span>
-            </div>
-        </div>
-    </div>
-    <div class="product">
-        <div class="img-container">
-            <img src="./images/product-2.jpg" alt="">
-            <div class="addCart">
-                <i class="fas fa-shopping-cart"></i>
-            </div>
-
-            <ul class="side-icons">
-                <span><i class="fas fa-search"></i></span>
-                <span><i class="far fa-heart"></i></span>
-                <span><i class="fas fa-sliders-h"></i></span>
-            </ul>
-        </div>
-        <div class="bottom">
-            <a href="">Bambi Print Mini Backpack</a>
-            <div class="price">
-                <span>$150</span>
-            </div>
-        </div>
-    </div>
-    <div class="product">
-        <div class="img-container">
-            <img src="./images/product-4.jpg" alt="">
-            <div class="addCart">
-                <i class="fas fa-shopping-cart"></i>
-            </div>
-
-            <ul class="side-icons">
-                <span><i class="fas fa-search"></i></span>
-                <span><i class="far fa-heart"></i></span>
-                <span><i class="fas fa-sliders-h"></i></span>
-            </ul>
-        </div>
-        <div class="bottom">
-            <a href="">Bambi Print Mini Backpack</a>
-            <div class="price">
-                <span>$150</span>
-                <span class="cancel">$160</span>
-            </div>
-        </div>
-    </div>
-    <div class="product">
-        <div class="img-container">
-            <img src="./images/product-5.jpg" alt="">
-            <div class="addCart">
-                <i class="fas fa-shopping-cart"></i>
-            </div>
-
-            <ul class="side-icons">
-                <span><i class="fas fa-search"></i></span>
-                <span><i class="far fa-heart"></i></span>
-                <span><i class="fas fa-sliders-h"></i></span>
-            </ul>
-        </div>
-        <div class="bottom">
-            <a href="">Bambi Print Mini Backpack</a>
-            <div class="price">
-                <span>$150</span>
-            </div>
-        </div>
-    </div>
-    <div class="product">
-        <div class="img-container">
-            <img src="./images/product-6.jpg" alt="">
-            <div class="addCart">
-                <i class="fas fa-shopping-cart"></i>
-            </div>
-
-            <ul class="side-icons">
-                <span><i class="fas fa-search"></i></span>
-                <span><i class="far fa-heart"></i></span>
-                <span><i class="fas fa-sliders-h"></i></span>
-            </ul>
-        </div>
-        <div class="bottom">
-            <a href="">Bambi Print Mini Backpack</a>
-            <div class="price">
-                <span>$150</span>
-            </div>
-        </div>
-    </div>
-    <div class="product">
-        <div class="img-container">
-            <img src="./images/product-7.jpg" alt="">
-            <div class="addCart">
-                <i class="fas fa-shopping-cart"></i>
-            </div>
-
-            <ul class="side-icons">
-                <span><i class="fas fa-search"></i></span>
-                <span><i class="far fa-heart"></i></span>
-                <span><i class="fas fa-sliders-h"></i></span>
-            </ul>
-        </div>
-        <div class="bottom">
-            <a href="">Bambi Print Mini Backpack</a>
-            <div class="price">
-                <span>$150</span>
-                <span class="cancel">$160</span>
-            </div>
-        </div>
-    </div>
-    <div class="product">
-        <div class="img-container">
-            <img src="./images/product-8.jpg" alt="">
-            <div class="addCart">
-                <i class="fas fa-shopping-cart"></i>
-            </div>
-
-            <ul class="side-icons">
-                <span><i class="fas fa-search"></i></span>
-                <span><i class="far fa-heart"></i></span>
-                <span><i class="fas fa-sliders-h"></i></span>
-            </ul>
-        </div>
-        <div class="bottom">
-            <a href="">Bambi Print Mini Backpack</a>
-            <div class="price">
-                <span>$150</span>
-                <span class="cancel">$160</span>
-            </div>
-        </div>
-    </div>
+    @endforeach
 </div>
 </section>
 <!--Advert-->
@@ -506,17 +183,17 @@
     <div class="item">
         <img src="./images/banner1.jpg" alt="">
         <div class="content left">
-            <span>Elusive Sales</span>
-            <h3>Spring Collections</h3>
-            <a href="">View Collection</a>
+            <span>Fresh Produce Everyday!</span>
+            <h3>Farm Fresh Products</h3>
+            <a href="{{route("list")}}">View Collections</a>
         </div>
     </div>
     <div class="item">
         <img src="./images/banner2.jpg" alt="">
         <div class="content right">
             <span>New Trending</span>
-            <h3>Designer Bags</h3>
-            <a href="">Shop Now</a>
+            <h3>Tastes like a Nectar!</h3>
+            <a href="{{route("list")}}">Shop Now</a>
         </div>
     </div>
 </div>
@@ -557,61 +234,5 @@
     </div>
 </div>
 </section>
-<!--Footer-->
-<footer id="footer" class="section footer">
-<div class="container">
-    <div class="footer-container">
-        <div class="footer-center">
-            <h3>EXTRAS</h3>
-            <a href="">Brands</a>
-            <a href="">Gift Certificates</a>
-            <a href="">Affiliate</a>
-            <a href="">Specials</a>
-            <a href="">Site Map</a>
-        </div>
-        <div class="footer-center">
-            <h3>INFORMATION</h3>
-            <a href="">About Us</a>
-            <a href="">Privacy Policy</a>
-            <a href="">Terms & Conditions</a>
-            <a href="">Contact Us</a>
-            <a href="">Site Map</a>
-        </div>
-        <div class="footer-center">
-            <h3>MY ACCOUNT</h3>
-            <a href="">My Account</a>
-            <a href="">Order History</a>
-            <a href="">Wish List</a>
-            <a href="">Newsletter</a>
-            <a href="">Returns</a>
-        </div>
-        <div class="footer-center">
-            <h3>CONTACT US</h3>
-            <div>
-                <span>
-                    <i class="fas fa-map-marker-alt"></i>
-                </span>
-                42 Dream House, Dreammy street, 7131 Dreamville, USA
-            </div>
-            <div>
-                <span>
-                    <i class="far fa-envelope"></i>
-                </span>
-                company@gmail.com
-            </div>
-            <div>
-                <span>
-                    <i class="fas fa-phone"></i>
-                </span>
-                456-456-4512
-            </div>
-            <div class="payment-methods">
-                <img src="./images/payment.png" alt="">
-            </div>
-
-        </div>
-    </div>
-</div>
-</footer>
 
 @endsection

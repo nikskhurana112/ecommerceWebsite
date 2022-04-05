@@ -12,7 +12,7 @@
 </head>
 <body>
   <div class="container">
-    <form action="{{route("admin.product.create")}}" method="post">
+    <form action="{{route("admin.product.create")}}"  enctype=”multipart/form-data” method="post">
       {{csrf_field()}}
       <div class="row">
         <div class="col-md-12">
@@ -21,16 +21,22 @@
             <input type="text" name="product_name" class="form-control" placeholder="Enter Product Name" required>
           </div>
         </div>
-        {{-- <div class="col-md-12">
+        <div class="col-md-12">
           <div class="form-group">
-            <label for="">Product Category</label>
-            <select name="category">
-              <option value="">Veggies</option>
-              <option value="">Fruits</option>
-              <option value="">Juices</option>
+            <label for="">Product Category:</label>
+            <select class="form-select" aria-label="Default select example" name="category">
+              <option value="veggies">Veggies</option>
+              <option value="fruits">Fruits</option>
+              <option value="juices">Juices</option>
             </select>
           </div>
-        </div> --}}
+        </div>
+        <div class="col-md-12"> 
+          <div class="form-group">
+            <label for="">Quantity Available in Kgs</label>
+            <input type="number" required name="quantity" class="form-control" value="  kgs"placeholder="Quantity in Kgs available">
+          </div>
+        </div>
         <div class="col-md-12">
           <div class="form-group">
             <label for="">Product Description</label>
@@ -46,7 +52,7 @@
         <div class="col-md-12">
           <div class="form-group">
             <label for="">Product Price</label>
-            <input type="number" name="product_price" class="form-control" placeholder="Enter Product Description" required>
+            <input type="number" name="product_price" value="$ " class="form-control" placeholder="Enter Product Description" required>
           </div>
         </div>
         <div class="col-md-12">

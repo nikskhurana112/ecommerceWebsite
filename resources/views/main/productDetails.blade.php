@@ -8,7 +8,9 @@
   <div class="details container">
       <div class="left">
           <div class="main">
-                <img src="./images/product-1.jpg" alt="">
+                @if($product->imagePath != Null)
+                    <img src="{{getImageUrl($product->imagePath)}}" alt="">
+                @endif
             </div>
 
 
@@ -31,30 +33,27 @@
           </div>
       </div>
       <div class="right">
-          <span>Home/Fruits</span>
-          <h1>Bambi Print Mini Backpack</h1>
-          <div class="price">$50</div>
-          <form action="">
-              <div>
-                  <select name="" id="">
-                      <option value="Select Quantity" selected disabled>
-                          Select Quantity
-                      </option>
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                      <option value="4">4</option>
-                  </select>
-
-              </div>
+          <span>$product->category</span>
+          <h1>$product->name</h1>
+          <div class="price">$product->price</div>
+            @if($cart->where('id', $product->id)->count())
+            <form action="{{route("user.cart.store")}}" method="post" class="form">
+              <input type="hidden" name="product_id" value="{{$product->id}}">
+              <h3>Select Quantity in Kgs</h3>  
+              <input type="number" name="quantity" placeholder="1">
+                <button type="submit" class="addCart">Buy Again</button>
+            </form>
+            @else
+          <form action="{{route("user.cart.store")}}" method="post" class="form">
+            <input type="hidden" name="product_id" value="{{$product->id}}">
+            <h3>Select Quantity in Kgs</h3>  
+            <input type="number" name="quantity" placeholder="1">
+              <button type="submit" class="addCart">Add to Cart</button>
           </form>
-          <form class="form">
-              <input type="text" placeholder="1">
-              <a href="cart.html" class="addCart">Add to Cart</a>
-          </form>
+          @endif
           <h3>Product Details</h3>
           <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt reprehenderit natus totam illum officiis veniam iure labore, aut sit quidem deleniti vero doloremque perspiciatis consequatur quod tempore sint, quia sapiente distinctio porro ea maiores dolorem earum. Minima nulla deleniti ipsa! Laborum adipisci cupiditate tempore incidunt dolor qui sapiente odio fugiat.
+              $product->description
           </p>
       </div>
     </div>

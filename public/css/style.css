@@ -83,7 +83,7 @@ li {
   left: 50%;
   transform: translate(-50%, -50%);
   width: 900px;
-  height: 500px;
+  height: 700px;
   background-color: white;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
   overflow: hidden;
@@ -157,6 +157,7 @@ li {
 
 .form-control button{
   text-align: center;
+  padding: 20px;
   width: 65%;
   border: none;
   cursor: pointer;
@@ -169,7 +170,7 @@ li {
   background-color: var(--lightblue);
 }
 
-.user-form .container .signup {
+/* .user-form .container .signup {
   pointer-events: none;
 }
 .user-form .container .signup .form-box {
@@ -198,7 +199,7 @@ li {
 }
 .user-form .container.active .login .img-box {
   top: -100%;
-}
+} */
 
 /* ===Navigation Bar===== */
 

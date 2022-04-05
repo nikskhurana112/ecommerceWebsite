@@ -11,10 +11,13 @@ class AdminController extends Controller
         return view("admin.add");
     }
     public function create(Request $req){
+
         $data['name'] = $req->product_name;
         $data['description'] = $req->product_description;
         $data['price'] = $req->product_price;
-        $data['imagePath'] = $req->image_path->store("product", ['disk' => 'public']);
+        // $data['imagePath'] = $req->image_path->store("product", ['disk' => 'public']);
+        $data['quantity'] = $req->quantity;
+        $data['category'] = $req->category;
 
         Product::create($data);
         session()->flash("success", "Product added Successfully");
@@ -43,5 +46,5 @@ class AdminController extends Controller
         $product->save();
         return redirect()->route("admin.product.product_list");
     }
-    
+
 }

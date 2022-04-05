@@ -16,14 +16,22 @@
         <tr>
             <th>Id</th>
             <th>Product ID</th>
+            <td>Product Name</td>
             <th>User ID</th>
+            <th>User Name</th>
+            <th>Price</th>
+            <th>Quantity</th>
             <th>Order Created At</th>
         </tr>
         @foreach($orders as $order)
         <tr>
             <td>{{$order->id}}</td>
-            <td>{{$order->product->Title}}</td>
+            <td>{{$order->product->name}}</td>
+            <td>{{$order->product->name}}</td>
+            <td>{{$order->user->id}}</td>
             <td>{{$order->user->name}}</td>
+            <td>{{$order->product->price}}</td>
+            <td>{{$order->product->quantity}}</td>
             <td>{{$order->created_at}}</td>
         </tr>
         @endforeach

@@ -13,91 +13,27 @@
           <th>Quantity</th>
           <th>Subtotal</th>
       </tr>
+      @foreach(Cart::content() as $cartItem)
       <tr>
          <td>
             <div class="cart-info">
-                <img src="./images/product-1.jpg" alt="">
+                {{-- @if($product->imagePath != Null)
+                  
+                @endif --}}
                 <div>
-                  <p>Bambi Print Mini Backpack</p>
-                  <span>Price: $500</span>
+                  <p>$cartItem->name</p>
+                  <span>Price: $cartItem->price</span>
                   <br>
-                  <a href="#">remove</a>
+                  <a href="{{ route('user.cart.remove', [ "id" => $cartItem->rowId ]) }}">remove</a>
                 </div>
             </div>
          </td>
           <td>
-              <input type="number" value="1" min="1">
+              <input type="number" value="$cartItem->quantity" min="1">
           </td>
-          <td>$50.0</td>
+          <td>{{number_format(Cart::subtotal(), 2)}} USD</td>
       </tr>
-      <tr>
-          <td>
-            <div class="cart-info">
-                <img src="./images/product-2.jpg" alt="">
-                <div>
-                  <p>Bambi Print Mini Backpack</p>
-                  <span>Price: $800</span>
-                  <br>
-                  <a href="#">remove</a>
-                </div>
-            </div>
-          </td>
-          <td>
-              <input type="number" value="1" min="1">
-          </td>
-          <td>$80.0</td>
-      </tr>
-      <tr>
-          <td>
-            <div class="cart-info">
-                <img src="./images/product-3.jpg" alt="">
-                <div>
-                  <p>Bambi Print Mini Backpack</p>
-                  <span>Price: $100</span>
-                  <br>
-                  <a href="#">remove</a>
-                </div>
-            </div>
-          </td>
-          <td>
-              <input type="number" value="1" min="1">
-          </td>
-          <td>$10.0</td>
-      </tr>
-      <tr>
-          <td>
-            <div class="cart-info">
-                <img src="./images/product-4.jpg" alt="">
-                <div>
-                  <p>Bambi Print Mini Backpack</p>
-                  <span>Price: $900</span>
-                  <br>
-                  <a href="#">remove</a>
-                </div>
-            </div>
-          </td>
-          <td>
-              <input type="number" value="1" min="1">
-          </td>
-          <td>$90.0</td>
-      </tr>
-      <tr>
-          <td>
-            <div class="cart-info">
-                <img src="./images/product-5.jpg" alt="">
-                <div>
-                  <p>Bambi Print Mini Backpack</p>
-                  <span>Price: $800</span>
-                  <br>
-                  <a href="#">remove</a>
-                </div>
-            </div> 
-          </td>
-          <td>
-              <input type="number" value="1" min="1">
-          </td>
-          <td>$80.0</td>
-      </tr>
+      @endforeach
   </table>
   <div class="total-price">
       <table>

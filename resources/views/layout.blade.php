@@ -22,22 +22,24 @@
 <link href='https://unpkg.com/boxicons@2.0.8/css/boxicons.min.css' rel='stylesheet'>
 
 <!--Custom CSS Main-->
-<link rel="stylesheet" type="text/css" href="{{ url('/css/style.css') }}" />
+<link rel="stylesheet" type="text/css" href="/css/style.css" />
 
 
 
 </head>
 <body>
   <div class="container">
+    
     @include('inc.nav')
     @yield('content')
+    @include('inc.footer')
   </div>
   
    <!--Swiper JS-->
    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/6.7.5/swiper-bundle.min.js"></script>
    <!--Custom Scripts-->
-   <script type="text/javascript" src="{{ URL::asset('js/script.js') }}"></script>
-   <script type="text/javascript" src="{{ URL::asset('js/slider.js') }}"></script>
+   <script type="text/javascript" src="js/script.js"></script>
+   <script type="text/javascript" src="js/slider.js"></script>
    {{-- <!--Bootstrap Javascript -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>  --}}
 

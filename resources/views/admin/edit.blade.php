@@ -21,16 +21,22 @@
             <input type="text" name="product_name" value="{{$product->name}}" class="form-control" placeholder="Enter Product Name" required>
           </div>
         </div>
-        {{-- <div class="col-md-12">
+        <div class="col-md-12">
           <div class="form-group">
             <label for="">Product Category</label>
             <select name="category">
-              <option value="">Veggies</option>
-              <option value="">Fruits</option>
-              <option value="">Juices</option>
+              <option value="veggies">Veggies</option>
+              <option value="fruits">Fruits</option>
+              <option value="juices">Juices</option>
             </select>
           </div>
-        </div> --}}
+        </div>
+        <div class="col-md-12">
+          <div class="form-group">
+            <label for="">Quantity Available in Kgs</label>
+            <input type="text" required class="form-control" value="  kgs"placeholder="Quantity in Kgs available">
+          </div>
+        </div>
         <div class="col-md-12">
           <div class="form-group">
             <label for="">Product Description</label>

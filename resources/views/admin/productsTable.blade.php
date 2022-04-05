@@ -19,20 +19,24 @@
             <th>Image</th>
             <th>Product Description</th>
             <th>Product Price</th>
+            <th>Category</th>
+            <th>Quantity</th>
             <th>Delete Product</th>
             <th>Edit Product</th>
         </tr>
         @foreach($products as $product)
         <tr>
             <td>{{$product->id}}</td>
-            <td>{{$product->Title}}</td>
+            <td>{{$product->name}}</td>
             <td>
-                @if ($product->ImagePath != null)
+                @if ($product->imagePath != null)
                     <img src="{{getImageUrl($product->ImagePath)}}" alt="" width="100px">
                 @endif
             </td>
-            <td>{{$product->Description}}</td>
-            <td>{{$product->Price}}</td>
+            <td>{{$product->description}}</td>
+            <td>{{$product->price}}</td>
+            <td>{{$product->quantity}}</td>
+            <td>{{$product->category}}</td>
             <td>
                 <a href="{{route("admin.product.delete_product", ['id' => $product->id])}}" class="btn btn-danger btn-sm">Delete</a>
             </td>

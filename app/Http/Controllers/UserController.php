@@ -18,29 +18,25 @@ class UserController extends Controller
 
     public function dologin(Request $req){
 
+        $req->validate([
+
+            "email" => "required",
+            "password" => "required|max:15|min:6"
+        ]);
+
         if(is_numeric($req->get('email'))){
             
-            $req->validate([
-                "mobile" => "required|max:10|exists:users,mobile",
-                "password" => "required|max:15|min:6"
-            ]);
+            
             $user = Auth::attempt(["mobile" => $req->email, "password" => $req->password]);
         }
         elseif (filter_var($req->get('email'), FILTER_VALIDATE_EMAIL)) {
             
-            $req->validate([
-                "email" => "required|max:50|exists:users,email",
-                "password" => "required|max:15|min:6"
-            ]);
             $user = Auth::attempt(["email" => $req->email, "password" => $req->password]);
         }
         
         else{
             ['username' => $req->get('email'), 'password'=>$req->get('password')];
-            $req->validate([
-                "username" => "required|max:50|exists:users,username",
-                "password" => "required|max:15|min:6"
-            ]);
+         
             $user = Auth::attempt(["username" => $req->email, "password" => $req->password]);
         } 
         
@@ -51,13 +47,17 @@ class UserController extends Controller
         return redirect()->back();
         
     }
+    public function showCart(){
+        return view('main.cart');
+    }
 
     public function doregister(Request $req){
         $req->validate([
+            "full_name" => "required|max:50",
             "username" => "required|max:15|unique:users,username",
             "email" =>"required|email|max:50|unique:users,email",
-            "mobile" => "required|max:10|unique:users, mobile",
-            "password" => "required|max:15|max:6|confirmed"
+            "mobile" => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
+            "password" => "required|max:15|min:6|confirmed"
         ]);
         $data = $req->all();
         $data["password"] = bcrypt($req->password);

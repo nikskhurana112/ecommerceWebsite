@@ -3,10 +3,10 @@
 @section('title', 'Product')
 
 @section('content')
-{{-- product-list --}}
+product-list
 <section class="product-list">
     <div class="container">
-        <section class="side-bar col-3">
+        {{-- <section class="side-bar col-3">
             <div class="block">
                 <div class="block-title">
                     <h1>Category</h1>
@@ -98,8 +98,8 @@
                     </li>
                 </ul>
             </div>
-          </section>
-          <section class="filter">
+          </section> --}}
+          {{-- <section class="filter">
             <form action="">
                 <div class="item sort">
                     <label for="sort-by">Sort By</label>
@@ -119,19 +119,20 @@
                 </div>
                 <button>Apply</button>
             </form>
-          </section>
+          </section> --}}
           <section class="section products col-9">
               @foreach($products as $product)
             <div class="product-layout container">
                 <div class="product">
                     <div class="img-container">
-                        @if($product->imagePath != null)
-                            <img src="{{getImageUrl($product->imagePath)}}" alt="">
-                        @endif
+                        
                         <div class="addCart">
                             <i class="fas fa-shopping-cart"></i>
                         </div>
           
+                    @if($product->imagePath != null)
+                            <img src="{{getImageUrl($product->imagePath)}}" alt="">
+                        @endif    
                         <ul class="side-icons">
                             <span><i class="fas fa-search"></i></span>
                             <span><i class="far fa-heart"></i></span>
